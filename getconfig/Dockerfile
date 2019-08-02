@@ -1,4 +1,4 @@
-FROM quay.io/pantheon-public/build-tools-ci:latest
+FROM quay.io/pantheon-public/build-tools-ci:6.x
 
 USER root
 # Disable host key checks so we can run in CI

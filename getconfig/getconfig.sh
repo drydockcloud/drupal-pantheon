@@ -31,10 +31,10 @@ terminus --no-interaction auth:login --machine-token="${TOKEN}"
 # Safety in case this is run outside a container
 if [[ ! -f ${HOME}/.ssh/id_rsa ]]; then
     echo "Storing SSH key"
-    mkdir ${HOME}/.ssh
+    mkdir "${HOME}/.ssh"
     ID_RSA_PATH=${HOME}/.ssh/id_rsa
     echo "${ID_RSA}" > "${ID_RSA_PATH}"
-    chmod 700 ${HOME}/.ssh
+    chmod 700 "${HOME}/.ssh"
     chmod 600 "${ID_RSA_PATH}"
     ssh-keygen -l -f "${ID_RSA_PATH}"
 fi
