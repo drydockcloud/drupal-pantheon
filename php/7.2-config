@@ -1,0 +1,674 @@
+export DISTRO='Fedora release 22 (Twenty Two)'
+export EXACT_VERSION='7.2.21'
+export CLI_CONFIGURE_OPTIONS='--host=x86_64-redhat-linux-gnu --prefix=/opt/php --with-libdir=lib64 --disable-debug --with-pic --disable-rpath --with-pear --with-bz2 --with-freetype-dir=/usr --with-png-dir=/usr --with-xpm-dir=/usr --enable-gd-native-ttf --with-t1lib=/usr --without-gdbm --with-gettext --with-gmp --with-iconv --with-jpeg-dir=/usr --with-openssl --with-pcre-regex=/usr --with-zlib --with-layout=GNU --enable-exif --enable-ftp --enable-sockets --with-kerberos --enable-shmop --enable-calendar --with-libxml-dir=/usr --enable-xml --with-mhash --enable-fpm --libdir=/opt/php/lib --with-mysql=mysqlnd --disable-dba --with-unixODBC=/usr --without-pspell --with-curl=/usr --disable-posix --disable-sysvmsg --disable-sysvshm --disable-sysvsem --with-pdo-sqlite --with-pdo-mysql --with-mysqli=mysqlnd --with-pdo-pgsql --with-pgsql --with-imap --with-imap-ssl --with-gd --with-ldap --with-tidy --enable-wddx --enable-bcmath --enable-dom --enable-fileinfo --enable-json --enable-mbstring --enable-intl --enable-pdo --enable-phar --enable-soap --enable-xmlreader --enable-xmlwriter --with-xsl --enable-zip --enable-opcache --with-imagick --enable-apcu --enable-apc-bc --enable-redis --enable-oauth --with-fpm-systemd host_alias=x86_64-redhat-linux-gnu'
+export FPM_CONFIGURE_OPTIONS='--host=x86_64-redhat-linux-gnu --prefix=/opt/php --with-libdir=lib64 --disable-debug --with-pic --disable-rpath --with-pear --with-bz2 --with-freetype-dir=/usr --with-png-dir=/usr --with-xpm-dir=/usr --enable-gd-native-ttf --with-t1lib=/usr --without-gdbm --with-gettext --with-gmp --with-iconv --with-jpeg-dir=/usr --with-openssl --with-pcre-regex=/usr --with-zlib --with-layout=GNU --enable-exif --enable-ftp --enable-sockets --with-kerberos --enable-shmop --enable-calendar --with-libxml-dir=/usr --enable-xml --with-mhash --enable-fpm --libdir=/opt/php/lib --with-mysql=mysqlnd --disable-dba --with-unixODBC=/usr --without-pspell --with-curl=/usr --disable-posix --disable-sysvmsg --disable-sysvshm --disable-sysvsem --with-pdo-sqlite --with-pdo-mysql --with-mysqli=mysqlnd --with-pdo-pgsql --with-pgsql --with-imap --with-imap-ssl --with-gd --with-ldap --with-tidy --enable-wddx --enable-bcmath --enable-dom --enable-fileinfo --enable-json --enable-mbstring --enable-intl --enable-pdo --enable-phar --enable-soap --enable-xmlreader --enable-xmlwriter --with-xsl --enable-zip --enable-opcache --with-imagick --enable-apcu --enable-apc-bc --enable-redis --enable-oauth --with-fpm-systemd host_alias=x86_64-redhat-linux-gnu'
+export PECL=''
+export EXTENSIONS='Core
+OAuth
+PDO
+Phar
+Reflection
+SPL
+SimpleXML
+Zend OPcache
+apcu
+apm
+bcmath
+bz2
+calendar
+ctype
+curl
+date
+dom
+exif
+fileinfo
+filter
+ftp
+gd
+gettext
+gmp
+hash
+iconv
+imagick
+imap
+intl
+json
+ldap
+libxml
+mbstring
+mysqli
+mysqlnd
+odbc
+openssl
+pcre
+pdo_mysql
+pdo_pgsql
+pdo_sqlite
+pdo_sqlsrv
+pgsql
+redis
+session
+shmop
+soap
+sockets
+sqlite3
+sqlsrv
+standard
+tidy
+tokenizer
+wddx
+xml
+xmlreader
+xmlwriter
+xsl
+zip
+zlib'
+export EXTENSIONS_VERSIONS='Core-7.2.21
+OAuth-2.0.2
+PDO-7.2.21
+Phar-2.0.2
+Reflection-7.2.21
+SPL-7.2.21
+SimpleXML-7.2.21
+Zend OPcache-7.2.21
+apcu-5.1.8
+apm-2.1.3.pantheon4
+bcmath-7.2.21
+bz2-7.2.21
+calendar-7.2.21
+ctype-7.2.21
+curl-7.2.21
+date-7.2.21
+dom-20031129
+exif-7.2.21
+fileinfo-1.0.5
+filter-7.2.21
+ftp-7.2.21
+gd-7.2.21
+gettext-7.2.21
+gmp-7.2.21
+hash-1.0
+iconv-7.2.21
+imagick-3.4.3
+imap-7.2.21
+intl-1.1.0
+json-1.6.0
+ldap-7.2.21
+libxml-7.2.21
+mbstring-7.2.21
+mysqli-7.2.21
+mysqlnd-mysqlnd 5.0.12-dev - 20150407 - $Id: 3591daad22de08524295e1bd073aceeff11e6579 $
+odbc-7.2.21
+openssl-7.2.21
+pcre-7.2.21
+pdo_mysql-7.2.21
+pdo_pgsql-7.2.21
+pdo_sqlite-7.2.21
+pdo_sqlsrv-5.6.1+11919
+pgsql-7.2.21
+redis-3.1.4
+session-7.2.21
+shmop-7.2.21
+soap-7.2.21
+sockets-7.2.21
+sqlite3-7.2.21
+sqlsrv-5.6.1+11919
+standard-7.2.21
+tidy-7.2.21
+tokenizer-7.2.21
+wddx-7.2.21
+xml-7.2.21
+xmlreader-7.2.21
+xmlwriter-7.2.21
+xsl-7.2.21
+zip-1.15.4
+zlib-7.2.21'
+export CLI_INI_FILE='/var/www/php.ini'
+export CLI_INI='
+[PHP]
+;;;;;;;;;;;;;;;
+; PHP Globals ;
+;;;;;;;;;;;;;;;
+short_open_tag = Off
+output_buffering = 4096
+allow_call_time_pass_reference = Off
+variables_order = "GPCS"
+request_order = "GP"
+register_long_arrays = Off
+register_argc_argv = Off
+enable_dl = Off
+allow_url_fopen = On
+realpath_cache_size = "800K"
+realpath_cache_ttl = "86400"
+include_path = ".:/usr/share/pear:/usr/share/php"
+sys_temp_dir = "/var/www/tmp"
+
+[Date]
+date.timezone = "UTC"
+
+[mail function]
+mail.add_x_header = On
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; PANTHEON SETTINGS ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+; Globals
+expose_php = Off
+max_execution_time = 120
+max_input_time = 900
+max_input_vars = 10000
+memory_limit = 256M
+upload_max_filesize = 100M
+post_max_size = 100M
+error_reporting = E_ALL & ~E_DEPRECATED
+ignore_repeated_errors = on
+html_errors = off
+display_errors = on
+error_log = /var/www/logs/php-error.log
+log_errors = on
+
+; Drupal Settings from .htaccess
+
+; assert.active controls whether `assert` operations do anything.
+; Available in all versions of php
+assert.active = 0
+
+
+; Drupal Settings from settings.php
+session.cache_expire = 200000
+session.cache_limiter = nocache
+session.cookie_lifetime = 2000000
+session.gc_maxlifetime = 200000
+
+; Using this to insert essential Pantheon functionality.
+;auto_prepend_file= = /var/www/includes/prepend.php
+
+extension_dir=/opt/php/lib
+
+; OPCache Configuration
+zend_extension = opcache.so
+opcache.memory_consumption=128
+opcache.interned_strings_buffer=8
+; Reportedly, php 7 can segfault if this value is exhausted. Urban legend?
+opcache.max_accelerated_files=32531
+opcache.revalidate_freq=0
+opcache.fast_shutdown=1
+opcache.enable=1
+
+; APCu Configuration
+apc.shm_size = 128M
+
+; APM Configuration
+; Slow request log does not do anything yet for the HTTP backend.
+apm.slow_request_enabled="1"
+apm.slow_request_duration="100"
+
+apm.enabled="1"
+apm.event_enabled="1"
+apm.http_enabled="1"
+; E_ERROR + E_PARSE = 5
+; http://davidwalsh.name/php-error_reporting-error-reporting
+apm.http_error_reporting=5
+
+; Turn off drivers we do not need
+apm.mysql_enabled=0
+apm.sqlite_enabled=0
+apm.statsd_enabled=0
+apm.socket_enabled=0
+; Set the root CA
+apm.http_certificate_authorities="/etc/pki/tls/certs/ca-bundle.crt"
+apm.http_server="https://api.live.example.com:8443/sites/docker/environments/php7-2/events"
+apm.http_client_certificate="/var/www/certs/binding.crt"
+apm.http_client_key="/var/www/certs/binding.key"
+
+
+; sqlsrv
+extension=pdo_sqlsrv.so
+extension=sqlsrv.so
+
+'
+export FPM_INI_FILE='/var/www/php.ini'
+export FPM_INI='
+[PHP]
+;;;;;;;;;;;;;;;
+; PHP Globals ;
+;;;;;;;;;;;;;;;
+short_open_tag = Off
+output_buffering = 4096
+allow_call_time_pass_reference = Off
+variables_order = "GPCS"
+request_order = "GP"
+register_long_arrays = Off
+register_argc_argv = Off
+enable_dl = Off
+allow_url_fopen = On
+realpath_cache_size = "800K"
+realpath_cache_ttl = "86400"
+include_path = ".:/usr/share/pear:/usr/share/php"
+sys_temp_dir = "/var/www/tmp"
+
+[Date]
+date.timezone = "UTC"
+
+[mail function]
+mail.add_x_header = On
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; PANTHEON SETTINGS ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+; Globals
+expose_php = Off
+max_execution_time = 120
+max_input_time = 900
+max_input_vars = 10000
+memory_limit = 256M
+upload_max_filesize = 100M
+post_max_size = 100M
+error_reporting = E_ALL & ~E_DEPRECATED
+ignore_repeated_errors = on
+html_errors = off
+display_errors = on
+error_log = /var/www/logs/php-error.log
+log_errors = on
+
+; Drupal Settings from .htaccess
+
+; assert.active controls whether `assert` operations do anything.
+; Available in all versions of php
+assert.active = 0
+
+
+; Drupal Settings from settings.php
+session.cache_expire = 200000
+session.cache_limiter = nocache
+session.cookie_lifetime = 2000000
+session.gc_maxlifetime = 200000
+
+; Using this to insert essential Pantheon functionality.
+;auto_prepend_file= = /var/www/includes/prepend.php
+
+extension_dir=/opt/php/lib
+
+; OPCache Configuration
+zend_extension = opcache.so
+opcache.memory_consumption=128
+opcache.interned_strings_buffer=8
+; Reportedly, php 7 can segfault if this value is exhausted. Urban legend?
+opcache.max_accelerated_files=32531
+opcache.revalidate_freq=0
+opcache.fast_shutdown=1
+opcache.enable=1
+
+; APCu Configuration
+apc.shm_size = 128M
+
+; APM Configuration
+; Slow request log does not do anything yet for the HTTP backend.
+apm.slow_request_enabled="1"
+apm.slow_request_duration="100"
+
+apm.enabled="1"
+apm.event_enabled="1"
+apm.http_enabled="1"
+; E_ERROR + E_PARSE = 5
+; http://davidwalsh.name/php-error_reporting-error-reporting
+apm.http_error_reporting=5
+
+; Turn off drivers we do not need
+apm.mysql_enabled=0
+apm.sqlite_enabled=0
+apm.statsd_enabled=0
+apm.socket_enabled=0
+; Set the root CA
+apm.http_certificate_authorities="/etc/pki/tls/certs/ca-bundle.crt"
+apm.http_server="https://api.live.example.com:8443/sites/docker/environments/php7-2/events"
+apm.http_client_certificate="/var/www/certs/binding.crt"
+apm.http_client_key="/var/www/certs/binding.key"
+
+
+; sqlsrv
+extension=pdo_sqlsrv.so
+extension=sqlsrv.so
+
+'
+export CONFIG='allow_url_fopen: 1
+allow_url_include: 0
+apc.coredump_unmap: 0
+apc.enable_cli: 0
+apc.enabled: 1
+apc.entries_hint: 4096
+apc.gc_ttl: 3600
+apc.mmap_file_mask: 
+apc.preload_path: 
+apc.serializer: php
+apc.shm_segments: 1
+apc.shm_size: 128M
+apc.slam_defense: 1
+apc.smart: 0
+apc.ttl: 0
+apc.use_request_time: 1
+apc.writable: /tmp
+apm.application_id: My application
+apm.dump_max_depth: 1
+apm.enabled: 1
+apm.event_enabled: 1
+apm.http_certificate_authorities: /etc/pki/tls/certs/ca-bundle.crt
+apm.http_client_certificate: /var/www/certs/binding.crt
+apm.http_client_key: /var/www/certs/binding.key
+apm.http_enabled: 1
+apm.http_error_reporting: 5
+apm.http_exception_mode: 1
+apm.http_max_backtrace_length: 0
+apm.http_process_silenced_events: 1
+apm.http_request_timeout: 1000
+apm.http_server: https://api.live.example.com:8443/sites/docker/environments/php7-2/events
+apm.http_stats_enabled: 1
+apm.mysql_db: apm
+apm.mysql_enabled: 0
+apm.mysql_error_reporting: 
+apm.mysql_exception_mode: 1
+apm.mysql_host: localhost
+apm.mysql_pass: 
+apm.mysql_port: 0
+apm.mysql_process_silenced_events: 1
+apm.mysql_stats_enabled: 0
+apm.mysql_user: root
+apm.socket_enabled: 0
+apm.socket_error_reporting: 
+apm.socket_exception_mode: 1
+apm.socket_path: file:/tmp/apm.sock|tcp:127.0.0.1:8264
+apm.socket_process_silenced_events: 1
+apm.socket_stats_enabled: 1
+apm.sqlite_db_path: /var/php/apm/db
+apm.sqlite_enabled: 0
+apm.sqlite_error_reporting: 
+apm.sqlite_exception_mode: 1
+apm.sqlite_max_event_insert_timeout: 100
+apm.sqlite_process_silenced_events: 1
+apm.sqlite_stats_enabled: 0
+apm.stats_duration_threshold: 100
+apm.stats_sys_cpu_threshold: 10
+apm.stats_user_cpu_threshold: 100
+apm.statsd_enabled: 0
+apm.statsd_error_reporting: 
+apm.statsd_exception_mode: 1
+apm.statsd_host: localhost
+apm.statsd_port: 8125
+apm.statsd_prefix: apm
+apm.statsd_stats_enabled: 1
+apm.store_cookies: 1
+apm.store_ip: 1
+apm.store_post: 1
+arg_separator.input: &
+arg_separator.output: &
+assert.active: 0
+assert.bail: 0
+assert.callback: 
+assert.exception: 0
+assert.quiet_eval: 0
+assert.warning: 1
+auto_append_file: 
+auto_detect_line_endings: 0
+auto_globals_jit: 1
+;auto_prepend_file=: /var/www/includes/prepend.php
+bcmath.scale: 0
+browscap: 
+curl.cainfo: 
+date.default_latitude: 31.7667
+date.default_longitude: 35.2333
+date.sunrise_zenith: 90.583333
+date.sunset_zenith: 90.583333
+date.timezone: UTC
+default_charset: UTF-8
+default_mimetype: text/html
+default_socket_timeout: 60
+disable_classes: 
+disable_functions: 
+display_errors: 1
+display_startup_errors: 0
+doc_root: 
+docref_ext: 
+docref_root: 
+enable_dl: 
+enable_post_data_reading: 1
+error_append_string: 
+error_log: /var/www/logs/php-error.log
+error_prepend_string: 
+error_reporting: 24575
+exif.decode_jis_intel: JIS
+exif.decode_jis_motorola: JIS
+exif.decode_unicode_intel: UCS-2LE
+exif.decode_unicode_motorola: UCS-2BE
+exif.encode_jis: 
+exif.encode_unicode: ISO-8859-15
+expose_php: 
+extension_dir: /var/www/php
+file_uploads: 1
+filter.default: unsafe_raw
+filter.default_flags: 
+from: 
+gd.jpeg_ignore_warning: 1
+hard_timeout: 2
+highlight.comment: #FF8000
+highlight.default: #0000BB
+highlight.html: #000000
+highlight.keyword: #007700
+highlight.string: #DD0000
+html_errors: 0
+iconv.input_encoding: 
+iconv.internal_encoding: 
+iconv.output_encoding: 
+ignore_repeated_errors: 1
+ignore_repeated_source: 0
+ignore_user_abort: 0
+imagick.locale_fix: 0
+imagick.progress_monitor: 0
+imagick.skip_version_check: 0
+imap.enable_insecure_rsh: 0
+implicit_flush: 1
+include_path: .:/usr/share/pear:/usr/share/php
+input_encoding: 
+internal_encoding: 
+intl.default_locale: 
+intl.error_level: 0
+intl.use_exceptions: 0
+ldap.max_links: -1
+log_errors: 1
+log_errors_max_len: 1024
+mail.add_x_header: 1
+mail.force_extra_parameters: 
+mail.log: 
+max_execution_time: 0
+max_file_uploads: 20
+max_input_nesting_level: 64
+max_input_time: -1
+max_input_vars: 10000
+mbstring.detect_order: 
+mbstring.encoding_translation: 0
+mbstring.func_overload: 0
+mbstring.http_input: 
+mbstring.http_output: 
+mbstring.http_output_conv_mimetypes: ^(text/|application/xhtml\+xml)
+mbstring.internal_encoding: 
+mbstring.language: neutral
+mbstring.strict_detection: 0
+mbstring.substitute_character: 
+memory_limit: 256M
+mysqli.allow_local_infile: 0
+mysqli.allow_persistent: 1
+mysqli.default_host: 
+mysqli.default_port: 3306
+mysqli.default_pw: 
+mysqli.default_socket: 
+mysqli.default_user: 
+mysqli.max_links: -1
+mysqli.max_persistent: -1
+mysqli.reconnect: 0
+mysqli.rollback_on_cached_plink: 0
+mysqlnd.collect_memory_statistics: 0
+mysqlnd.collect_statistics: 1
+mysqlnd.debug: 
+mysqlnd.fetch_data_copy: 0
+mysqlnd.log_mask: 0
+mysqlnd.mempool_default_size: 16000
+mysqlnd.net_cmd_buffer_size: 4096
+mysqlnd.net_read_buffer_size: 32768
+mysqlnd.net_read_timeout: 86400
+mysqlnd.sha256_server_public_key: 
+mysqlnd.trace_alloc: 
+odbc.allow_persistent: 1
+odbc.check_persistent: 1
+odbc.default_cursortype: 3
+odbc.default_db: 
+odbc.default_pw: 
+odbc.default_user: 
+odbc.defaultbinmode: 1
+odbc.defaultlrl: 4096
+odbc.max_links: -1
+odbc.max_persistent: -1
+opcache.blacklist_filename: 
+opcache.consistency_checks: 0
+opcache.dups_fix: 0
+opcache.enable: 1
+opcache.enable_cli: 0
+opcache.enable_file_override: 0
+opcache.error_log: 
+opcache.file_cache: 
+opcache.file_cache_consistency_checks: 1
+opcache.file_cache_only: 0
+opcache.file_update_protection: 2
+opcache.force_restart_timeout: 180
+opcache.huge_code_pages: 0
+opcache.inherited_hack: 1
+opcache.interned_strings_buffer: 8
+opcache.lockfile_path: /tmp
+opcache.log_verbosity_level: 1
+opcache.max_accelerated_files: 32531
+opcache.max_file_size: 0
+opcache.max_wasted_percentage: 5
+opcache.memory_consumption: 128
+opcache.opt_debug_level: 0
+opcache.optimization_level: 0x7FFFBFFF
+opcache.preferred_memory_model: 
+opcache.protect_memory: 0
+opcache.restrict_api: 
+opcache.revalidate_freq: 0
+opcache.revalidate_path: 0
+opcache.save_comments: 1
+opcache.use_cwd: 1
+opcache.validate_permission: 0
+opcache.validate_root: 0
+opcache.validate_timestamps: 1
+open_basedir: 
+openssl.cafile: 
+openssl.capath: 
+output_buffering: 0
+output_encoding: 
+output_handler: 
+pcre.backtrack_limit: 1000000
+pcre.jit: 1
+pcre.recursion_limit: 100000
+pdo_mysql.default_socket: /tmp/mysql.sock
+pdo_sqlsrv.client_buffer_max_kb_size: 10240
+pdo_sqlsrv.log_severity: 0
+pgsql.allow_persistent: 1
+pgsql.auto_reset_persistent: 0
+pgsql.ignore_notice: 0
+pgsql.log_notice: 0
+pgsql.max_links: -1
+pgsql.max_persistent: -1
+phar.cache_list: 
+phar.readonly: 1
+phar.require_hash: 1
+post_max_size: 100M
+precision: 14
+realpath_cache_size: 800K
+realpath_cache_ttl: 86400
+redis.arrays.autorehash: 
+redis.arrays.functions: 
+redis.arrays.hosts: 
+redis.arrays.index: 
+redis.arrays.names: 
+redis.arrays.previous: 
+redis.clusters.read_timeout: 
+redis.clusters.seeds: 
+redis.clusters.timeout: 
+register_argc_argv: 1
+report_memleaks: 1
+report_zend_debug: 0
+request_order: GP
+sendmail_from: 
+sendmail_path: /usr/sbin/sendmail -t -i 
+serialize_precision: -1
+session.auto_start: 0
+session.cache_expire: 200000
+session.cache_limiter: nocache
+session.cookie_domain: 
+session.cookie_httponly: 0
+session.cookie_lifetime: 2000000
+session.cookie_path: /
+session.cookie_secure: 0
+session.gc_divisor: 100
+session.gc_maxlifetime: 200000
+session.gc_probability: 1
+session.lazy_write: 1
+session.name: PHPSESSID
+session.referer_check: 
+session.save_handler: files
+session.save_path: 
+session.serialize_handler: php
+session.sid_bits_per_character: 4
+session.sid_length: 32
+session.trans_sid_hosts: 
+session.trans_sid_tags: a=href,area=href,frame=src,form=
+session.upload_progress.cleanup: 1
+session.upload_progress.enabled: 1
+session.upload_progress.freq: 1%
+session.upload_progress.min_freq: 1
+session.upload_progress.name: PHP_SESSION_UPLOAD_PROGRESS
+session.upload_progress.prefix: upload_progress_
+session.use_cookies: 1
+session.use_only_cookies: 1
+session.use_strict_mode: 0
+session.use_trans_sid: 0
+short_open_tag: 
+SMTP: localhost
+smtp_port: 25
+soap.wsdl_cache: 1
+soap.wsdl_cache_dir: /tmp
+soap.wsdl_cache_enabled: 1
+soap.wsdl_cache_limit: 5
+soap.wsdl_cache_ttl: 86400
+sqlite3.defensive: 1
+sqlite3.extension_dir: 
+sqlsrv.ClientBufferMaxKBSize: 10240
+sqlsrv.LogSeverity: 0
+sqlsrv.LogSubsystems: 0
+sqlsrv.WarningsReturnAsErrors: 1
+sys_temp_dir: /var/www/tmp
+tidy.clean_output: 0
+tidy.default_config: 
+track_errors: 0
+unserialize_callback_func: 
+upload_max_filesize: 100M
+upload_tmp_dir: 
+url_rewriter.hosts: 
+url_rewriter.tags: form=
+user_agent: 
+user_dir: 
+user_ini.cache_ttl: 300
+user_ini.filename: .user.ini
+variables_order: GPCS
+xmlrpc_error_number: 0
+xmlrpc_errors: 0
+zend.assertions: 1
+zend.detect_unicode: 1
+zend.enable_gc: 1
+zend.multibyte: 0
+zend.script_encoding: 
+zend.signal_check: 0
+zlib.output_compression: 0
+zlib.output_compression_level: -1
+zlib.output_handler: '
