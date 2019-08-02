@@ -112,7 +112,7 @@ RUN . /usr/src/config && \
         \
         # Validate that distro, loaded extensions and config match
         if ! diff -uw /etc/redhat-release <(echo "${DISTRO}"); then echo "Distro does not match expected"; exit 1; fi && \
-        if ! diff -uw <(php -r '$e = get_loaded_extensions() && sort($e) && print(implode(PHP_EOL, $e));') <(echo "${EXTENSIONS}"); then echo "PHP extensions do not match expected"; exit 2; fi && \
+        if ! diff -uw <(php -r '$e = get_loaded_extensions(); sort($e); print(implode(PHP_EOL, $e));') <(echo "${EXTENSIONS}"); then echo "PHP extensions do not match expected"; exit 2; fi && \
         if ! diff -uw \
         <(php -r 'foreach (ini_get_all() as $k => $v) { print "$k: $v['global_value']\n"; }' | grep -Ev "($CONFIG_EXCLUDE)") \
         <(echo "${CONFIG}" | grep -Ev "($CONFIG_EXCLUDE)"); \
