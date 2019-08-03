@@ -24,7 +24,7 @@ pipeline {
                     steps {
                         script {
                             withEnv(['VERSION=7.1']) {
-                                docker.build("drydockcloud/drupal-pantheon-php-${VERSION}:${TAG}", "./php --build-arg version=${VERSION}")
+                                sh 'docker build "drydockcloud/drupal-pantheon-php-${VERSION}:${TAG}" ./php --build-arg version="${VERSION}"'
                             }
                         }
                     }
@@ -33,7 +33,7 @@ pipeline {
                     steps {
                         script {
                             withEnv(['VERSION=7.2']) {
-                                docker.build("drydockcloud/drupal-pantheon-php-${VERSION}:${TAG}", "./php --build-arg version=${VERSION}")
+                                sh 'docker build "drydockcloud/drupal-pantheon-php-${VERSION}:${TAG}" ./php --build-arg version="${VERSION}"'
                             }
                         }
                     }
@@ -41,14 +41,14 @@ pipeline {
                 stage('NGINX') {
                     steps {
                         script {
-                            docker.build("drydockcloud/drupal-pantheon-nginx:${TAG}", "./nginx")
+                            sh 'docker build "drydockcloud/drupal-pantheon-nginx:${TAG}" ./nginx'
                         }
                     }
                 }
                 stage('MySQL') {
                     steps {
                         script {
-                            docker.build("drydockcloud/drupal-pantheon-mysql:${TAG}", "./mysql")
+                            sh 'docker build "drydockcloud/drupal-pantheon-mysql:${TAG}" ./mysql'
                         }
                     }
                 }
