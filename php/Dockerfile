@@ -92,7 +92,7 @@ RUN . /usr/src/config && \
         # Install PHP extensions - we use the versions from EXTENSIONS_VERSIONS since Pantheon doesn't list the pecl packages
         pear config-set php_ini /opt/php/etc/php.ini && \
         # Variable not quoted as it contains arguments that are separate words
-        yes '' | pecl install --force $(echo "${EXTENSIONS_VERSIONS}" | grep -Eio "(${PECL_PACKAGES})-[0-9]\\.[0-9]\\.[0-9]") && \
+        yes '' | pecl install --force $(echo "${EXTENSIONS_VERSIONS}" | grep -Eio "(${PECL_PACKAGES})-[0-9]\\.[0-9]\\.[0-9]"); \
         # Move the extensions from the extension API version directory to the /opt/php/lib directory to simplify configuration (PECL ext_dir does not work)
         mv /opt/php/lib/[0-9]*/* /opt/php/lib && \
         # Install ionCube if present
