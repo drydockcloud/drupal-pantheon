@@ -68,6 +68,7 @@ RUN . /usr/src/config && \
         ${BUILDDEPS} \
         # Permanently installed dependencies
         file \
+        mariadb \
         wget \
         xz && \
         # Reqs for sqlsrv extension
