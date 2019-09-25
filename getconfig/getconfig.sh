@@ -84,6 +84,7 @@ sed -i'' -e "s/FROM nginx:[0-9.]*$/FROM nginx:$NGINXVERSION/" nginx/Dockerfile
         -e 's@/srv/includes/fastcgi_params@/etc/nginx/fastcgi_params@g' \
         -e 's@^[ ]*ssl_@# ssl_@g' \
         -e 's@fastcgi_pass [^;]*;@fastcgi_pass php:9000;@g' \
+        -e 's@proxy_pass http://[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*:[0-9]*;@proxy_pass \@backtophp;@g' \
         nginx.conf
 )
 
