@@ -21,7 +21,7 @@ docker run --volume "$(pwd)":/app --user "$(id -u):$(id -g)" drush/drush dl drup
 
 echo "Starting containers"
 docker-compose up --detach
-sleep 10
+sleep 30
 
 # TODO: Actually install Drupal here and also test dumping and autoloading a database.
 
