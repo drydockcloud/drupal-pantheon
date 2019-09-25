@@ -66,7 +66,7 @@ pipeline {
                 stage('Test PHP 7.2') {
                     steps {
                         script {
-                            withEnv(['VERSION=7.1']) {
+                            withEnv(['VERSION=7.2']) {
                                 sh 'test/test.sh'
                             }
                         }
