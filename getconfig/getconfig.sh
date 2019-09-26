@@ -64,13 +64,16 @@ sed -i'' -e "s/FROM mariadb:[0-9.]*$/FROM mariadb:$MYSQLVERSION/" mysql/Dockerfi
 
 echo "Updating Nginx version and config"
 # Get Nginx version number
-NGINXVERSION=$(terminus remote:drush "${SITE}.${MULTIDEV}" ev "shell_exec('/usr/sbin/nginx -v')" | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+')
+NGINXVERSION=$( (terminus remote:drush "${SITE}.${MULTIDEV}" ev "shell_exec('/usr/sbin/nginx -v')" 2>&1 || true) | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+')
+echo "Ngnix version is $NGINXVERSION"
 # Update the version number in the Dockerfile with the extracted number
 sed -i'' -e "s/FROM nginx:[0-9.]*$/FROM nginx:$NGINXVERSION/" nginx/Dockerfile
 (
     # Fetch a sample nginx.conf
     cd nginx
     sftp -i "${ID_RSA_PATH}" -o Port=2222 "${HOST}":code/ <<< $'get ../nginx.conf'
+    # Remove initial proxy_pass (which seems to go to some internal service, perhaps a WAF?
+    perl -i -p0e 's@location /.*?proxy_intercept_errors.*?}@@s' nginx.conf
     # Update the config to work in Docker and remove access keys etc
     sed -i'' \
         -e 's@listen \[::\]@#listen [::]@g' \
@@ -84,6 +87,7 @@ sed -i'' -e "s/FROM nginx:[0-9.]*$/FROM nginx:$NGINXVERSION/" nginx/Dockerfile
         -e 's@/srv/includes/fastcgi_params@/etc/nginx/fastcgi_params@g' \
         -e 's@^[ ]*ssl_@# ssl_@g' \
         -e 's@fastcgi_pass [^;]*;@fastcgi_pass php:9000;@g' \
+        -e 's|location @backtophp|location /|g' \
         nginx.conf
 )
 
