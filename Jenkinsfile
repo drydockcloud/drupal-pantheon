@@ -8,7 +8,9 @@ pipeline {
             steps {
                 script {
                     // Check bash script formatting
-                    sh 'find * -name *.sh -print0 | xargs -n1 -I "{}" -0 docker run -i -v "$(pwd)":/workdir -w /workdir unibeautify/beautysh -c "/workdir/{}"'
+                    sh 'find * -name *.sh -print0 | xargs -n1 -I "{}" -0 docker run -i -v "$(pwd)":/workdir -w /workdir unibeautify/beautysh --files "/workdir/{}"'
+                    // Can't check exit code, so just test if files changed on disk
+                    sh 'if ! git diff-index --quiet HEAD --; then echo "Bash not matching beautysh style"; exit 1; fi'
                     // Lint bash scripts using shellcheck
                     sh 'find * -name *.sh -print0 | xargs -n1 -I "{}" -0 docker run -i --rm -v "$PWD":/src  koalaman/shellcheck "/src/{}"'
                     // Lint Dockerfiles using hadolint
@@ -66,7 +68,7 @@ pipeline {
                 stage('Test PHP 7.2') {
                     steps {
                         script {
-                            withEnv(['VERSION=7.2']) {
+                            withEnv(['VERSION=7.1']) {
                                 sh 'test/test.sh'
                             }
                         }
