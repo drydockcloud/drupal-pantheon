@@ -96,6 +96,7 @@ pipeline {
           when { branch 'master' }
           steps {
             script {
+              sh 'eval $(ssh-agent -a ssh.sock -s) && echo "$ID_RSA" | base64 -d | ssh-add -'
               sh 'git checkout master'
               sh 'git commit -a -m"Automatic update for $(date --iso-8601=date)"'
               sh 'git push origin master'
