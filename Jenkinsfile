@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    triggers {
+        // Update/build master at 9pm PT.
+        cron(env.BRANCH_NAME == 'master' ? '0 23 * * *' : '')
+    }
     environment { 
         TAG = "${env.BRANCH_NAME}"
     }
@@ -15,6 +19,15 @@ pipeline {
                     sh 'find * -name Dockerfile* -print0 | xargs -n1 -I "{}" -0 docker run -i --rm -v "$PWD":/src hadolint/hadolint hadolint "/src/{}"'
                 }
             }
+        }
+        stage('Update master') {
+          when { branch 'master' }
+          steps {
+            script {
+              sh 'docker build -t getconfig getconfig'
+              sh 'docker run -it -v $(pwd)/php:/build-tools-ci/php -v $(pwd)/mysql:/build-tools-ci/mysql -v $(pwd)/nginx:/build-tools-ci/nginx -e TOKEN -e ID_RSA getconfig:latest dockertest'
+            }
+          }
         }
         stage('Build') {
             parallel {
@@ -73,6 +86,18 @@ pipeline {
                     }
                 }
             }
+        }
+        stage('Push to master') {
+          when { branch 'master' }
+          steps {
+            script {
+              sh 'git commit -a -m"Automatic update for $(date --iso-8601=date)"'
+              sh 'git push origin master'
+              # Cut a tag for the day (if it does not already exist - otherwise just let it roll into tomorrows tag).
+              sh 'git tag "$(date \"+v%Y.%m.%d-0\")" || true'
+              sh 'git push origin --tags'
+            }
+          }
         }
     }
 }
