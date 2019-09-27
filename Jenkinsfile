@@ -22,8 +22,7 @@ pipeline {
                 }
             }
         }
-        stage('Update master') {
-          when { branch 'master' }
+        stage('Update configs') {
           steps {
             script {
               sh 'docker build -t getconfig getconfig'
@@ -91,7 +90,7 @@ pipeline {
                 }
             }
         }
-        stage('Push to master') {
+        stage('Commit and push to master') {
           when { branch 'master' }
           steps {
             script {
