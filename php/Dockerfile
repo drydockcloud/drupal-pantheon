@@ -6,7 +6,7 @@ FROM fedora:22
 ARG version=7.2
 
 # Items excluded from config comparison (known deltas due to IDs, extension defaults etc)
-ENV CONFIG_EXCLUDE ^apm\.|^extension_dir|^sendmail_path|auto_prepend_file|^ic24.sec.initial_cache_all
+ENV CONFIG_EXCLUDE ^apm\.|^extension_dir|^sendmail_path|auto_prepend_file|^ic24|^phpd
 
 # PECL packages - we need to list these explicitly as we can't identify these automatically
 ENV PECL_PACKAGES apcu|apm|imagick|oauth|pdo_sqlsrv|redis|sqlsrv
