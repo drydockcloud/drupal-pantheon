@@ -96,6 +96,7 @@ pipeline {
           when { branch 'master' }
           steps {
             script {
+              sh 'git checkout master'
               sh 'git commit -a -m"Automatic update for $(date --iso-8601=date)"'
               sh 'git push origin master'
               // Cut a tag for the day (if it does not already exist - otherwise just let it roll into tomorrows tag).
