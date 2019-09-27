@@ -95,7 +95,7 @@ pipeline {
             script {
               sh 'git commit -a -m"Automatic update for $(date --iso-8601=date)"'
               sh 'git push origin master'
-              # Cut a tag for the day (if it does not already exist - otherwise just let it roll into tomorrows tag).
+              // Cut a tag for the day (if it does not already exist - otherwise just let it roll into tomorrows tag).
               sh 'git tag "$(date \"+v%Y.%m.%d-0\")" || true'
               sh 'git push origin --tags'
             }
