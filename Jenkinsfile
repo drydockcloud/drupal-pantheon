@@ -8,6 +8,9 @@ pipeline {
         TAG = "${env.BRANCH_NAME}"
         TOKEN = credentials('pantheon-machine-token') 
         ID_RSA = credentials('pantheon-ssh-key')
+        # Set Git user for commits.
+        GIT_COMMITTER_NAME = "Drydock CI"
+        GIT_COMMITTER_EMAIL = "ci@drydock.cloud"
     }
     stages {
         stage('Code linting') {
@@ -26,9 +29,8 @@ pipeline {
           steps {
             script {
               sh 'docker build -t getconfig getconfig'
-              sh 'chmod o+w -R php nginx mysql'
-              sh 'docker run -i -v $(pwd)/php:/build-tools-ci/php -v $(pwd)/mysql:/build-tools-ci/mysql -v $(pwd)/nginx:/build-tools-ci/nginx -e TOKEN -e ID_RSA getconfig:latest dockertest'
-              sh 'chmod o-w -R php nginx mysql'
+              sh 'docker run --user=$(id -u) -i -v $(pwd)/php:/build-tools-ci/php -v $(pwd)/mysql:/build-tools-ci/mysql -v $(pwd)/nginx:/build-tools-ci/nginx -e TOKEN -e ID_RSA getconfig:latest dockertest'
+              sh 'git diff'
             }
           }
         }
