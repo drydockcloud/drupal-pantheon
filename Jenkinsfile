@@ -25,6 +25,15 @@ pipeline {
                 }
             }
         }
+        // If we are building master, check out the real branch now so we can commit changes later
+        stage('Checkout master') {
+          when { branch 'master' }
+          steps {
+            script {
+             sh 'git checkout master'
+            }
+          }
+        }
         stage('Update configs') {
           steps {
             script {
@@ -97,7 +106,6 @@ pipeline {
           steps {
             script {
               sh 'rm ssh.sock || true; eval $(ssh-agent -a ssh.sock -s) && echo "$ID_RSA" | base64 -d | ssh-add -'
-              sh 'git checkout master'
               sh 'git add php nginx mysql'
               sh 'git commit -m"Automatic update for $(date --iso-8601=date)"'
               sh 'git push origin master'
