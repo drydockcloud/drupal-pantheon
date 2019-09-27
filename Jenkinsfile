@@ -31,6 +31,7 @@ pipeline {
           steps {
             script {
              sh 'git checkout master'
+             sh 'git pull origin master'
             }
           }
         }
