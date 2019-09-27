@@ -33,7 +33,7 @@ if [[ ! -f ${HOME}/.ssh/id_rsa ]]; then
     echo "Storing SSH key"
     mkdir "${HOME}/.ssh"
     ID_RSA_PATH=${HOME}/.ssh/id_rsa
-    echo "${ID_RSA}" > "${ID_RSA_PATH}"
+    echo "${ID_RSA}" | base64 -d > "${ID_RSA_PATH}"
     chmod 700 "${HOME}/.ssh"
     chmod 600 "${ID_RSA_PATH}"
     ssh-keygen -l -f "${ID_RSA_PATH}"
