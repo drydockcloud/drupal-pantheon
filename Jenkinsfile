@@ -6,6 +6,8 @@ pipeline {
     }
     environment { 
         TAG = "${env.BRANCH_NAME}"
+        TOKEN = credentials('pantheon-machine-token') 
+        ID_RSA = credentials('pantheon-ssh-key')
     }
     stages {
         stage('Code linting') {
@@ -25,7 +27,7 @@ pipeline {
           steps {
             script {
               sh 'docker build -t getconfig getconfig'
-              sh 'docker run -it -v $(pwd)/php:/build-tools-ci/php -v $(pwd)/mysql:/build-tools-ci/mysql -v $(pwd)/nginx:/build-tools-ci/nginx -e TOKEN -e ID_RSA getconfig:latest dockertest'
+              sh 'docker run -i -v $(pwd)/php:/build-tools-ci/php -v $(pwd)/mysql:/build-tools-ci/mysql -v $(pwd)/nginx:/build-tools-ci/nginx -e TOKEN -e ID_RSA getconfig:latest dockertest'
             }
           }
         }
