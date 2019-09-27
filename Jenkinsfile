@@ -27,9 +27,9 @@ pipeline {
           steps {
             script {
               sh 'docker build -t getconfig getconfig'
-              sh 'chmod o+w php/* ngnix/* mysql/*'
+              sh 'chmod o+w php/* nginx/* mysql/*'
               sh 'docker run -i -v $(pwd)/php:/build-tools-ci/php -v $(pwd)/mysql:/build-tools-ci/mysql -v $(pwd)/nginx:/build-tools-ci/nginx -e TOKEN -e ID_RSA getconfig:latest dockertest'
-              sh 'chmod o-w php/* ngnix/* mysql/*'
+              sh 'chmod o-w php/* nginx/* mysql/*'
             }
           }
         }
