@@ -8,7 +8,7 @@ pipeline {
         TAG = "${env.BRANCH_NAME}"
         TOKEN = credentials('pantheon-machine-token') 
         ID_RSA = credentials('pantheon-ssh-key')
-        # Set Git user for commits.
+        // Set Git user for commits.
         GIT_COMMITTER_NAME = "Drydock CI"
         GIT_COMMITTER_EMAIL = "ci@drydock.cloud"
     }
