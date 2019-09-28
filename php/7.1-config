@@ -1,5 +1,5 @@
 export DISTRO='Fedora release 22 (Twenty Two)'
-export EXACT_VERSION='7.1.30'
+export EXACT_VERSION='7.1.32'
 export CLI_CONFIGURE_OPTIONS='--host=x86_64-redhat-linux-gnu --prefix=/opt/php --with-libdir=lib64 --disable-debug --with-pic --disable-rpath --with-pear --with-bz2 --with-freetype-dir=/usr --with-png-dir=/usr --with-xpm-dir=/usr --enable-gd-native-ttf --with-t1lib=/usr --without-gdbm --with-gettext --with-gmp --with-iconv --with-jpeg-dir=/usr --with-openssl --with-pcre-regex=/usr --with-zlib --with-layout=GNU --enable-exif --enable-ftp --enable-sockets --with-kerberos --enable-shmop --enable-calendar --with-libxml-dir=/usr --enable-xml --with-mhash --enable-fpm --libdir=/opt/php/lib --with-mysql=mysqlnd --disable-dba --with-unixODBC=/usr --without-pspell --with-curl=/usr --disable-posix --disable-sysvmsg --disable-sysvshm --disable-sysvsem --with-pdo-sqlite --with-pdo-mysql --with-mysqli=mysqlnd --with-pdo-pgsql --with-pgsql --with-imap --with-imap-ssl --with-gd --with-ldap --with-mcrypt --with-tidy --enable-wddx --enable-bcmath --enable-dom --enable-fileinfo --enable-json --enable-mbstring --enable-intl --enable-pdo --enable-phar --enable-soap --enable-xmlreader --enable-xmlwriter --with-xsl --enable-zip --enable-opcache --with-imagick --enable-apcu --enable-apc-bc --enable-redis --enable-oauth --enable-sqlsrv=shared --with-pdo_sqlsrv=shared --with-odbcver=0x0380 --with-fpm-systemd host_alias=x86_64-redhat-linux-gnu'
 export FPM_CONFIGURE_OPTIONS='--host=x86_64-redhat-linux-gnu --prefix=/opt/php --with-libdir=lib64 --disable-debug --with-pic --disable-rpath --with-pear --with-bz2 --with-freetype-dir=/usr --with-png-dir=/usr --with-xpm-dir=/usr --enable-gd-native-ttf --with-t1lib=/usr --without-gdbm --with-gettext --with-gmp --with-iconv --with-jpeg-dir=/usr --with-openssl --with-pcre-regex=/usr --with-zlib --with-layout=GNU --enable-exif --enable-ftp --enable-sockets --with-kerberos --enable-shmop --enable-calendar --with-libxml-dir=/usr --enable-xml --with-mhash --enable-fpm --libdir=/opt/php/lib --with-mysql=mysqlnd --disable-dba --with-unixODBC=/usr --without-pspell --with-curl=/usr --disable-posix --disable-sysvmsg --disable-sysvshm --disable-sysvsem --with-pdo-sqlite --with-pdo-mysql --with-mysqli=mysqlnd --with-pdo-pgsql --with-pgsql --with-imap --with-imap-ssl --with-gd --with-ldap --with-mcrypt --with-tidy --enable-wddx --enable-bcmath --enable-dom --enable-fileinfo --enable-json --enable-mbstring --enable-intl --enable-pdo --enable-phar --enable-soap --enable-xmlreader --enable-xmlwriter --with-xsl --enable-zip --enable-opcache --with-imagick --enable-apcu --enable-apc-bc --enable-redis --enable-oauth --enable-sqlsrv=shared --with-pdo_sqlsrv=shared --with-odbcver=0x0380 --with-fpm-systemd host_alias=x86_64-redhat-linux-gnu'
 export PECL=''
@@ -63,66 +63,66 @@ xmlwriter
 xsl
 zip
 zlib'
-export EXTENSIONS_VERSIONS='Core-7.1.30
+export EXTENSIONS_VERSIONS='Core-7.1.32
 OAuth-2.0.2
-PDO-7.1.30
+PDO-7.1.32
 Phar-2.0.2
-Reflection-7.1.30
-SPL-7.1.30
-SimpleXML-7.1.30
-Zend OPcache-7.1.30
+Reflection-7.1.32
+SPL-7.1.32
+SimpleXML-7.1.32
+Zend OPcache-7.1.32
 apcu-5.1.8
 apm-2.1.3.pantheon4
-bcmath-7.1.30
-bz2-7.1.30
-calendar-7.1.30
-ctype-7.1.30
-curl-7.1.30
-date-7.1.30
+bcmath-7.1.32
+bz2-7.1.32
+calendar-7.1.32
+ctype-7.1.32
+curl-7.1.32
+date-7.1.32
 dom-20031129
-exif-7.1.30
+exif-7.1.32
 fileinfo-1.0.5
-filter-7.1.30
-ftp-7.1.30
-gd-7.1.30
-gettext-7.1.30
-gmp-7.1.30
+filter-7.1.32
+ftp-7.1.32
+gd-7.1.32
+gettext-7.1.32
+gmp-7.1.32
 hash-1.0
-iconv-7.1.30
+iconv-7.1.32
 imagick-3.4.3
-imap-7.1.30
+imap-7.1.32
 intl-1.1.0
 ionCube Loader-
 json-1.5.0
-ldap-7.1.30
-libxml-7.1.30
-mbstring-7.1.30
-mcrypt-7.1.30
-mysqli-7.1.30
+ldap-7.1.32
+libxml-7.1.32
+mbstring-7.1.32
+mcrypt-7.1.32
+mysqli-7.1.32
 mysqlnd-mysqlnd 5.0.12-dev - 20150407 - $Id: 38fea24f2847fa7519001be390c98ae0acafe387 $
-odbc-7.1.30
-openssl-7.1.30
-pcre-7.1.30
-pdo_mysql-7.1.30
-pdo_pgsql-7.1.30
-pdo_sqlite-7.1.30
-pgsql-7.1.30
+odbc-7.1.32
+openssl-7.1.32
+pcre-7.1.32
+pdo_mysql-7.1.32
+pdo_pgsql-7.1.32
+pdo_sqlite-7.1.32
+pgsql-7.1.32
 redis-3.1.4
-session-7.1.30
-shmop-7.1.30
-soap-7.1.30
-sockets-7.1.30
-sqlite3-7.1.30
-standard-7.1.30
-tidy-7.1.30
-tokenizer-7.1.30
-wddx-7.1.30
-xml-7.1.30
-xmlreader-7.1.30
-xmlwriter-7.1.30
-xsl-7.1.30
+session-7.1.32
+shmop-7.1.32
+soap-7.1.32
+sockets-7.1.32
+sqlite3-7.1.32
+standard-7.1.32
+tidy-7.1.32
+tokenizer-7.1.32
+wddx-7.1.32
+xml-7.1.32
+xmlreader-7.1.32
+xmlwriter-7.1.32
+xsl-7.1.32
 zip-1.13.5
-zlib-7.1.30'
+zlib-7.1.32'
 export CLI_INI_FILE='/var/www/php.ini'
 export CLI_INI='; Ioncube requires that it be the first thing loaded in the php.ini file.
 ; We disable it by default. Enable in settings/config file via:
@@ -672,6 +672,7 @@ soap.wsdl_cache_enabled: 1
 soap.wsdl_cache_limit: 5
 soap.wsdl_cache_ttl: 86400
 sql.safe_mode: 0
+sqlite3.defensive: 1
 sqlite3.extension_dir: 
 sys_temp_dir: /var/www/tmp
 tidy.clean_output: 0
