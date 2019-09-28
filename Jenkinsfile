@@ -106,10 +106,16 @@ pipeline {
             script {
               sh 'git remote set-url origin git@github.com:drydockcloud/drupal-pantheon.git'
               sh 'git add php nginx mysql'
-              sh 'git commit -m"Automatic update for $(date --iso-8601=date)"'
-              // Cut a tag for the day (if it does not already exist - otherwise just let it roll into tomorrows tag).
-              sh 'git tag "$(date \"+v%Y.%m.%d-0\")" || true'
-              sh 'rm ssh.sock || true; eval $(ssh-agent -a ssh.sock -s) && echo "$ID_RSA" | base64 -d | ssh-add - && git push origin master && git push origin --tags; ssh-add -D'
+              try {
+                // If there are changes added, this will exit non-zero so we can commit them.
+                sh 'git diff --cached --exit-code'
+              }
+              catch (exc) {
+                sh 'git commit -m"Automatic update for $(date --iso-8601=date)"'
+                // Cut a tag for the day (if it does not already exist - otherwise just let it roll into tomorrows tag).
+                sh 'git tag "$(date \"+v%Y.%m.%d-0\")" || true'
+                sh 'rm ssh.sock || true; eval $(ssh-agent -a ssh.sock -s) && echo "$ID_RSA" | base64 -d | ssh-add - && git push origin master && git push origin --tags; ssh-add -D'
+              }
             }
           }
         }
