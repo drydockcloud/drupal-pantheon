@@ -26,6 +26,7 @@ pipeline {
             }
         }
         // If we are building master, check out the real branch now so we can commit changes later
+        // Potentially could switch this to a git {} task
         stage('Checkout master') {
           when { branch 'master' }
           steps {
@@ -108,6 +109,7 @@ pipeline {
           steps {
             script {
               sh 'rm ssh.sock || true; eval $(ssh-agent -a ssh.sock -s) && echo "$ID_RSA" | base64 -d | ssh-add -'
+              sh 'git remote set-url origin git@github.com:drydockcloud/drupal-pantheon.git'
               sh 'git add php nginx mysql'
               sh 'git commit -m"Automatic update for $(date --iso-8601=date)"'
               sh 'git push origin master'
