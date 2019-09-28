@@ -82,22 +82,20 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
-            stage('Test PHP 7.1') {
-                steps {
-                    script {
-                        withEnv(['VERSION=7.1']) {
-                            sh 'test/test.sh'
-                        }
+        stage('Test PHP 7.1') {
+            steps {
+                script {
+                    withEnv(['VERSION=7.1']) {
+                        sh 'test/test.sh'
                     }
                 }
             }
-            stage('Test PHP 7.2') {
-                steps {
-                    script {
-                        withEnv(['VERSION=7.2']) {
-                            sh 'test/test.sh'
-                        }
+        }
+        stage('Test PHP 7.2') {
+            steps {
+                script {
+                    withEnv(['VERSION=7.2']) {
+                        sh 'test/test.sh'
                     }
                 }
             }
