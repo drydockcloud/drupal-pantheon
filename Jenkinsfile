@@ -30,8 +30,9 @@ pipeline {
           when { branch 'master' }
           steps {
             script {
+             sh 'git fetch origin master'
              sh 'git checkout master'
-             sh 'git pull origin master'
+             sh 'git reset --hard origin/master'
             }
           }
         }
