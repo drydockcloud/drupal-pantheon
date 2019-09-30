@@ -66,9 +66,9 @@ RUN sh -c "curl https://raw.githubusercontent.com/kadwanev/retry/master/retry -o
 # hadolint ignore=SC1091,SC2016,SC2046,SC2086,DL3003,DL3008
 RUN . /usr/src/config && \
         touch /var/lib/rpm/* \
-        && retry dnf -y upgrade --setopt=deltarpm=false \
-        && retry dnf -y group install "C Development Tools and Libraries" \
-        && retry dnf -y install \
+        && retry -- dnf -y upgrade --setopt=deltarpm=false \
+        && retry -- dnf -y group install "C Development Tools and Libraries" \
+        && retry -- dnf -y install \
         ${BUILDDEPS} \
         # Permanently installed dependencies
         file \
@@ -76,12 +76,12 @@ RUN . /usr/src/config && \
         wget \
         xz && \
         # Reqs for sqlsrv extension
-        retry curl --silent --location --output /etc/yum.repos.d/mssql-release.repo https://packages.microsoft.com/config/rhel/7/prod.repo && \
-        ACCEPT_EULA=Y retry dnf install -y msodbcsql && \
+        retry -- curl --silent --location --output /etc/yum.repos.d/mssql-release.repo https://packages.microsoft.com/config/rhel/7/prod.repo && \
+        ACCEPT_EULA=Y retry -- dnf install -y msodbcsql && \
         \
         # Download and build php
         cd /usr/src && \
-        retry curl --silent --location --output php.tar.xz "http://us1.php.net/get/php-${EXACT_VERSION}.tar.xz/from/this/mirror" && \
+        retry -- curl --silent --location --output php.tar.xz "http://us1.php.net/get/php-${EXACT_VERSION}.tar.xz/from/this/mirror" && \
         tar xf php.tar.xz && \
         cd /usr/src/php-* && \
         # Build CLI and FPM (single build step, CLI and FPM use identical configure options)
@@ -103,7 +103,7 @@ RUN . /usr/src/config && \
         # Install ionCube if present
         if [[ ${EXTENSIONS} == *"ionCube Loader"* ]]; then \
         mkdir -p /opt/pantheon/ioncube/10.0.3/ && \
-        retry url --silent --location http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz | tar xvz --directory /opt/pantheon/ioncube/10.0.3/ --strip-components=1; \
+        retry -- url --silent --location http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz | tar xvz --directory /opt/pantheon/ioncube/10.0.3/ --strip-components=1; \
         fi && \
         # Ensure each extension is only listed once in php.ini
         EXT=$(grep '^extension=' /opt/php/etc/php.ini | tr -d '"' | sort -u); \
@@ -112,8 +112,8 @@ RUN . /usr/src/config && \
         \
         # Clean up
         rm -rf /usr/src/* && \
-        retry dnf -y group remove "C Development Tools and Libraries" && \
-        retry dnf clean all && \
+        retry -- dnf -y group remove "C Development Tools and Libraries" && \
+        retry -- dnf clean all && \
         \
         # Validate that distro, loaded extensions and config match
         if ! diff -uw /etc/redhat-release <(echo "${DISTRO}"); then echo "Distro does not match expected"; exit 1; fi && \
