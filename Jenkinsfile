@@ -14,6 +14,7 @@ pipeline {
     }
     stages {
         stage('Code linting') {
+            when { anyOf { branch 'master'; changeRequest(); } }
             steps {
                 script {
                     // Check bash script formatting
@@ -28,31 +29,33 @@ pipeline {
         // If we are building master, check out the real branch now so we can commit changes later
         // Potentially could switch this to a git {} task
         stage('Checkout master') {
-          when { branch 'master' }
-          steps {
-            script {
-             sh 'git fetch origin master'
-             sh 'git checkout master'
-             sh 'git reset --hard origin/master'
+            when { branch 'master' }
+            steps {
+                script {
+                sh 'git fetch origin master'
+                sh 'git checkout master'
+                sh 'git reset --hard origin/master'
+                }
             }
-          }
         }
         stage('Update configs') {
-          steps {
-            script {
-              sh 'docker build -t getconfig getconfig'
-              sh 'docker run --user=$(id -u) -i -v $(pwd)/php:/build-tools-ci/php -v $(pwd)/mysql:/build-tools-ci/mysql -v $(pwd)/nginx:/build-tools-ci/nginx -e TOKEN -e ID_RSA getconfig:latest dockertest'
-              // If we are on master and there are no changes, then pass the build early.
-              def result = sh 'if [[ "$(git symbolic-ref HEAD 2>/dev/null)" == "refs/heads/master" ]]; then git diff --exit-code; fi'
-              if (result != 0) {
-                echo 'No changes on master build, ending early.'
-                currentBuild.result = 'SUCCESS'
-                return
-              }
+            when { anyOf { branch 'master'; changeRequest(); } }
+            steps {
+                script {
+                    sh 'docker build -t getconfig getconfig'
+                    sh 'docker run --user=$(id -u) -i -v $(pwd)/php:/build-tools-ci/php -v $(pwd)/mysql:/build-tools-ci/mysql -v $(pwd)/nginx:/build-tools-ci/nginx -e TOKEN -e ID_RSA getconfig:latest dockertest'
+                    // If we are on master and there are no changes, then pass the build early.
+                    def result = sh 'if [[ "$(git symbolic-ref HEAD 2>/dev/null)" == "refs/heads/master" ]]; then git diff --exit-code; fi'
+                    if (result != 0) {
+                        echo 'No changes on master build, ending early.'
+                        currentBuild.result = 'SUCCESS'
+                        return
+                    }
+                }
             }
-          }
         }
         stage('Build') {
+            when { anyOf { branch 'master'; changeRequest(); } }
             parallel {
                 stage('PHP 7.1') {
                     steps {
@@ -95,6 +98,7 @@ pipeline {
             }
         }
         stage('Test PHP 7.1') {
+            when { anyOf { branch 'master'; changeRequest(); } }
             steps {
                 script {
                     withEnv(['VERSION=7.1']) {
@@ -104,6 +108,7 @@ pipeline {
             }
         }
         stage('Test PHP 7.2') {
+            when { anyOf { branch 'master'; changeRequest(); } }
             steps {
                 script {
                     withEnv(['VERSION=7.2']) {
@@ -113,23 +118,23 @@ pipeline {
             }
         }
         stage('Commit and push to master') {
-          when { branch 'master' }
-          steps {
-            script {
-              sh 'git remote set-url origin git@github.com:drydockcloud/drupal-pantheon.git'
-              sh 'git add php nginx mysql'
-              try {
-                // If there are changes added, this will exit non-zero so we can commit them.
-                sh 'git diff --cached --exit-code'
-              }
-              catch (exc) {
-                sh 'git commit -m"Automatic update for $(date --iso-8601=date)"'
-                // Cut a tag for the day (if it does not already exist - otherwise just let it roll into tomorrows tag).
-                sh 'git tag "$(date \"+v%Y.%m.%d-0\")" || true'
-                sh 'rm ssh.sock || true; eval $(ssh-agent -a ssh.sock -s) && echo "$ID_RSA" | base64 -d | ssh-add - && git push origin master && git push origin --tags; ssh-add -D'
-              }
+            when { branch 'master' }
+            steps {
+                script {
+                    sh 'git remote set-url origin git@github.com:drydockcloud/drupal-pantheon.git'
+                    sh 'git add php nginx mysql'
+                    try {
+                        // If there are changes added, this will exit non-zero so we can commit them.
+                        sh 'git diff --cached --exit-code'
+                    }
+                    catch (exc) {
+                        sh 'git commit -m"Automatic update for $(date --iso-8601=date)"'
+                        // Cut a tag for the day (if it does not already exist - otherwise just let it roll into tomorrows tag).
+                        sh 'git tag "$(date \"+v%Y.%m.%d-0\")" || true'
+                        sh 'rm ssh.sock || true; eval $(ssh-agent -a ssh.sock -s) && echo "$ID_RSA" | base64 -d | ssh-add - && git push origin master && git push origin --tags; ssh-add -D'
+                    }
+                }
             }
-          }
         }
     }
 }
