@@ -103,7 +103,7 @@ RUN . /usr/src/config && \
         # Install ionCube if present
         if [[ ${EXTENSIONS} == *"ionCube Loader"* ]]; then \
         mkdir -p /opt/pantheon/ioncube/10.0.3/ && \
-        retry -- url --silent --location http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz | tar xvz --directory /opt/pantheon/ioncube/10.0.3/ --strip-components=1; \
+        retry -- curl --silent --location http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz | tar xvz --directory /opt/pantheon/ioncube/10.0.3/ --strip-components=1; \
         fi && \
         # Ensure each extension is only listed once in php.ini
         EXT=$(grep '^extension=' /opt/php/etc/php.ini | tr -d '"' | sort -u); \
