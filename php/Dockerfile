@@ -58,7 +58,7 @@ ENV PATH=$PATH:/opt/php/bin
 COPY "${version}"-config /usr/src/config
 
 # Add a retry helper to work around DNF flakes: https://bugzilla.redhat.com/show_bug.cgi?id=1593033
-RUN sudo sh -c "curl https://raw.githubusercontent.com/kadwanev/retry/master/retry -o /usr/local/bin/retry && \
+RUN sh -c "curl https://raw.githubusercontent.com/kadwanev/retry/master/retry -o /usr/local/bin/retry && \
         chmod +x /usr/local/bin/retry"
 
 # Install prerequisites, build PHP & extensions, validate the build then clean up
