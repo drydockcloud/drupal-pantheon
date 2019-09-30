@@ -42,7 +42,13 @@ pipeline {
             script {
               sh 'docker build -t getconfig getconfig'
               sh 'docker run --user=$(id -u) -i -v $(pwd)/php:/build-tools-ci/php -v $(pwd)/mysql:/build-tools-ci/mysql -v $(pwd)/nginx:/build-tools-ci/nginx -e TOKEN -e ID_RSA getconfig:latest dockertest'
-              sh 'git diff'
+              // If we are on master and there are no changes, then pass the build early.
+              def result = sh 'if [[ "$(git symbolic-ref HEAD 2>/dev/null)" == "refs/heads/master" ]]; then git diff --exit-code; fi'
+              if (result != 0) {
+                echo 'No changes on master build, ending early.'
+                currentBuild.result = 'SUCCESS'
+                return
+              }
             }
           }
         }
@@ -52,7 +58,11 @@ pipeline {
                     steps {
                         script {
                             withEnv(['VERSION=7.1']) {
-                                sh 'docker build -t "drydockcloud/drupal-pantheon-php-${VERSION}:${TAG}" ./php --build-arg version="${VERSION}"'
+                                // Retry the build if it fails. DNF can fail on fetching mirrors as the mirror server 503s when the list is rotated.
+                                // See: https://bugzilla.redhat.com/show_bug.cgi?id=1593033
+                                retry(3) {
+                                    sh 'docker build -t "drydockcloud/drupal-pantheon-php-${VERSION}:${TAG}" ./php --build-arg version="${VERSION}"'
+                                }
                             }
                         }
                     }
@@ -61,7 +71,9 @@ pipeline {
                     steps {
                         script {
                             withEnv(['VERSION=7.2']) {
-                                sh 'docker build -t "drydockcloud/drupal-pantheon-php-${VERSION}:${TAG}" ./php --build-arg version="${VERSION}"'
+                                retry(3) {
+                                    sh 'docker build -t "drydockcloud/drupal-pantheon-php-${VERSION}:${TAG}" ./php --build-arg version="${VERSION}"'
+                                }
                             }
                         }
                     }
