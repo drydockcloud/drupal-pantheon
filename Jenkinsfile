@@ -137,4 +137,9 @@ pipeline {
             }
         }
     }
+    post {
+        failure {
+            slackSend channel: 'bowline-drydock', message: "Build failed, see build log for details: ${env.BUILD_URL}console"
+        }
+    }
 }
