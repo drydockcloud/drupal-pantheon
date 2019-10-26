@@ -1,5 +1,5 @@
 export DISTRO='Fedora release 22 (Twenty Two)'
-export EXACT_VERSION='7.2.23'
+export EXACT_VERSION='7.2.24'
 export CLI_CONFIGURE_OPTIONS='--host=x86_64-redhat-linux-gnu --prefix=/opt/php --with-libdir=lib64 --disable-debug --with-pic --disable-rpath --with-pear --with-bz2 --with-freetype-dir=/usr --with-png-dir=/usr --with-xpm-dir=/usr --enable-gd-native-ttf --with-t1lib=/usr --without-gdbm --with-gettext --with-gmp --with-iconv --with-jpeg-dir=/usr --with-openssl --with-pcre-regex=/usr --with-zlib --with-layout=GNU --enable-exif --enable-ftp --enable-sockets --with-kerberos --enable-shmop --enable-calendar --with-libxml-dir=/usr --enable-xml --with-mhash --enable-fpm --libdir=/opt/php/lib --with-mysql=mysqlnd --disable-dba --with-unixODBC=/usr --without-pspell --with-curl=/usr --disable-posix --disable-sysvmsg --disable-sysvshm --disable-sysvsem --with-pdo-sqlite --with-pdo-mysql --with-mysqli=mysqlnd --with-pdo-pgsql --with-pgsql --with-imap --with-imap-ssl --with-gd --with-ldap --with-tidy --enable-wddx --enable-bcmath --enable-dom --enable-fileinfo --enable-json --enable-mbstring --enable-intl --enable-pdo --enable-phar --enable-soap --enable-xmlreader --enable-xmlwriter --with-xsl --enable-zip --enable-opcache --with-imagick --enable-apcu --enable-apc-bc --enable-redis --enable-oauth --with-fpm-systemd host_alias=x86_64-redhat-linux-gnu'
 export FPM_CONFIGURE_OPTIONS='--host=x86_64-redhat-linux-gnu --prefix=/opt/php --with-libdir=lib64 --disable-debug --with-pic --disable-rpath --with-pear --with-bz2 --with-freetype-dir=/usr --with-png-dir=/usr --with-xpm-dir=/usr --enable-gd-native-ttf --with-t1lib=/usr --without-gdbm --with-gettext --with-gmp --with-iconv --with-jpeg-dir=/usr --with-openssl --with-pcre-regex=/usr --with-zlib --with-layout=GNU --enable-exif --enable-ftp --enable-sockets --with-kerberos --enable-shmop --enable-calendar --with-libxml-dir=/usr --enable-xml --with-mhash --enable-fpm --libdir=/opt/php/lib --with-mysql=mysqlnd --disable-dba --with-unixODBC=/usr --without-pspell --with-curl=/usr --disable-posix --disable-sysvmsg --disable-sysvshm --disable-sysvsem --with-pdo-sqlite --with-pdo-mysql --with-mysqli=mysqlnd --with-pdo-pgsql --with-pgsql --with-imap --with-imap-ssl --with-gd --with-ldap --with-tidy --enable-wddx --enable-bcmath --enable-dom --enable-fileinfo --enable-json --enable-mbstring --enable-intl --enable-pdo --enable-phar --enable-soap --enable-xmlreader --enable-xmlwriter --with-xsl --enable-zip --enable-opcache --with-imagick --enable-apcu --enable-apc-bc --enable-redis --enable-oauth --with-fpm-systemd host_alias=x86_64-redhat-linux-gnu'
 export PECL=''
@@ -63,66 +63,66 @@ xmlwriter
 xsl
 zip
 zlib'
-export EXTENSIONS_VERSIONS='Core-7.2.23
+export EXTENSIONS_VERSIONS='Core-7.2.24
 OAuth-2.0.2
-PDO-7.2.23
+PDO-7.2.24
 Phar-2.0.2
-Reflection-7.2.23
-SPL-7.2.23
-SimpleXML-7.2.23
-Zend OPcache-7.2.23
+Reflection-7.2.24
+SPL-7.2.24
+SimpleXML-7.2.24
+Zend OPcache-7.2.24
 apcu-5.1.8
 apm-2.1.3.pantheon4
-bcmath-7.2.23
-bz2-7.2.23
-calendar-7.2.23
-ctype-7.2.23
-curl-7.2.23
-date-7.2.23
+bcmath-7.2.24
+bz2-7.2.24
+calendar-7.2.24
+ctype-7.2.24
+curl-7.2.24
+date-7.2.24
 dom-20031129
-exif-7.2.23
+exif-7.2.24
 fileinfo-1.0.5
-filter-7.2.23
-ftp-7.2.23
-gd-7.2.23
-gettext-7.2.23
-gmp-7.2.23
+filter-7.2.24
+ftp-7.2.24
+gd-7.2.24
+gettext-7.2.24
+gmp-7.2.24
 hash-1.0
-iconv-7.2.23
+iconv-7.2.24
 imagick-3.4.3
-imap-7.2.23
+imap-7.2.24
 intl-1.1.0
 json-1.6.0
-ldap-7.2.23
-libxml-7.2.23
-mbstring-7.2.23
-mysqli-7.2.23
+ldap-7.2.24
+libxml-7.2.24
+mbstring-7.2.24
+mysqli-7.2.24
 mysqlnd-mysqlnd 5.0.12-dev - 20150407 - $Id: 3591daad22de08524295e1bd073aceeff11e6579 $
-odbc-7.2.23
-openssl-7.2.23
-pcre-7.2.23
-pdo_mysql-7.2.23
-pdo_pgsql-7.2.23
-pdo_sqlite-7.2.23
+odbc-7.2.24
+openssl-7.2.24
+pcre-7.2.24
+pdo_mysql-7.2.24
+pdo_pgsql-7.2.24
+pdo_sqlite-7.2.24
 pdo_sqlsrv-5.6.1+11919
-pgsql-7.2.23
+pgsql-7.2.24
 redis-3.1.4
-session-7.2.23
-shmop-7.2.23
-soap-7.2.23
-sockets-7.2.23
-sqlite3-7.2.23
+session-7.2.24
+shmop-7.2.24
+soap-7.2.24
+sockets-7.2.24
+sqlite3-7.2.24
 sqlsrv-5.6.1+11919
-standard-7.2.23
-tidy-7.2.23
-tokenizer-7.2.23
-wddx-7.2.23
-xml-7.2.23
-xmlreader-7.2.23
-xmlwriter-7.2.23
-xsl-7.2.23
+standard-7.2.24
+tidy-7.2.24
+tokenizer-7.2.24
+wddx-7.2.24
+xml-7.2.24
+xmlreader-7.2.24
+xmlwriter-7.2.24
+xsl-7.2.24
 zip-1.15.4
-zlib-7.2.23'
+zlib-7.2.24'
 export CLI_INI_FILE='/var/www/php.ini'
 export CLI_INI='
 [PHP]
