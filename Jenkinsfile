@@ -81,6 +81,17 @@ pipeline {
                         }
                     }
                 }
+                stage('PHP 7.3') {
+                    steps {
+                        script {
+                            withEnv(['VERSION=7.3']) {
+                                retry(3) {
+                                    sh 'docker build -t "drydockcloud/drupal-pantheon-php-${VERSION}:${TAG}" ./php --build-arg version="${VERSION}"'
+                                }
+                            }
+                        }
+                    }
+                }
                 stage('NGINX') {
                     steps {
                         script {
@@ -112,6 +123,16 @@ pipeline {
             steps {
                 script {
                     withEnv(['VERSION=7.2']) {
+                        sh 'test/test.sh'
+                    }
+                }
+            }
+        }
+        stage('Test PHP 7.3') {
+            when { anyOf { branch 'master'; changeRequest(); } }
+            steps {
+                script {
+                    withEnv(['VERSION=7.3']) {
                         sh 'test/test.sh'
                     }
                 }

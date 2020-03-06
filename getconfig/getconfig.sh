@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-SUPPORTED_PHP=( 7.1 7.2 )
+SUPPORTED_PHP=( 7.1 7.2 7.3 )
 SITE=${1:-}
 if [ -z "$SITE" ]; then
     echo "First argument must be Pantheon site to get configuration for."
