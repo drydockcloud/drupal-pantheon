@@ -9,7 +9,7 @@ ARG version=7.2
 ENV CONFIG_EXCLUDE ^apm\.|^extension_dir|^sendmail_path|auto_prepend_file|^ic24|^phpd
 
 # PECL packages - we need to list these explicitly as we can't identify these automatically
-ENV PECL_PACKAGES apcu|apm|imagick|oauth|pdo_sqlsrv|redis|sqlsrv
+ENV PECL_PACKAGES apcu|imagick|oauth|pdo_sqlsrv|redis|sqlsrv|mongodb
 
 # Build dependencies - removed after build is complete
 ENV BUILDDEPS aspell-devel \
@@ -32,6 +32,7 @@ ENV BUILDDEPS aspell-devel \
         libtidy-devel \
         libxml2-devel \
         libxslt-devel \
+        libzip-devel \
         mhash-devel \
         mysql-devel \
         ncurses-devel \
@@ -46,6 +47,7 @@ ENV BUILDDEPS aspell-devel \
         systemd-devel \
         t1lib-devel \
         unixODBC-devel \
+        git \
         zlib-devel
 
 # We use bash process substitution to simplify the validation diff commands
@@ -78,7 +80,8 @@ RUN . /usr/src/config && \
         # Reqs for sqlsrv extension
         retry -- curl --silent --location --output /etc/yum.repos.d/mssql-release.repo https://packages.microsoft.com/config/rhel/7/prod.repo && \
         ACCEPT_EULA=Y retry -- dnf install -y msodbcsql && \
-        \
+        # Reqs for php --with-libsodium (requires 1.0.8+ which is not avail for fc22)
+        dnf -y install https://kojipkgs.fedoraproject.org//vol/fedora_koji_archive01/packages/libsodium/1.0.12/1.fc24/x86_64/libsodium-1.0.12-1.fc24.x86_64.rpm https://kojipkgs.fedoraproject.org//vol/fedora_koji_archive01/packages/libsodium/1.0.12/1.fc24/x86_64/libsodium-devel-1.0.12-1.fc24.x86_64.rpm && \
         # Download and build php
         cd /usr/src && \
         retry -- curl --silent --location --output php.tar.xz "http://us1.php.net/get/php-${EXACT_VERSION}.tar.xz/from/this/mirror" && \
@@ -92,13 +95,23 @@ RUN . /usr/src/config && \
         \
         # Copy the etc configuration into place - CLI and FPM use identical configs
         echo "${CLI_INI}" > "/opt/php/etc/php.ini" && \
-        # Workaround for APM PHP extension
+        \
+        # Build APM PHP extension from source for 7.3 compatability
         ln -s /usr/lib64/mysql/libmysqlclient* /usr/lib/ && \
+        git clone https://github.com/pantheon-systems/php-apm.git && \
+        cd php-apm && \
+        phpize && \
+        ./configure --with-php-config=/opt/php/bin/php-config --with-sqlite3 --with-mysql --enable-socket=yes --enable-statsd=yes && \
+        make && make install && \
+        echo 'extension=apm.so' >> /opt/php/etc/php.ini && \
         # Install PHP extensions - we use the versions from EXTENSIONS_VERSIONS since Pantheon doesn't list the pecl packages
         pear config-set php_ini /opt/php/etc/php.ini && \
         # Variable not quoted as it contains arguments that are separate words
         yes '' | pecl install --force $(echo "${EXTENSIONS_VERSIONS}" | grep -Eio "(${PECL_PACKAGES})-[0-9]\\.[0-9]\\.[0-9]"); \
         # Move the extensions from the extension API version directory to the /opt/php/lib directory to simplify configuration (PECL ext_dir does not work)
+        mv /opt/php/lib/[0-9]*/* /opt/php/lib && \
+        # Repeat the install/move so that extensions with dependencies can install (e.g. oauth, apcu, imagick)
+        yes '' | pecl install --force $(echo "${EXTENSIONS_VERSIONS}" | grep -Eio "(${PECL_PACKAGES})-[0-9]\\.[0-9]\\.[0-9]"); \
         mv /opt/php/lib/[0-9]*/* /opt/php/lib && \
         # Install ionCube if present
         if [[ ${EXTENSIONS} == *"ionCube Loader"* ]]; then \
