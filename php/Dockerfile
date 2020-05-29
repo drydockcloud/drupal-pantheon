@@ -90,7 +90,7 @@ RUN . /usr/src/config && \
         # Build CLI and FPM (single build step, CLI and FPM use identical configure options)
         # Variable not quoted as it contains arguments that are separate words
         ./configure ${CLI_CONFIGURE_OPTIONS} && \
-        make -j "$(nproc)" && \
+        make -j "4" && \
         make install && \
         \
         # Copy the etc configuration into place - CLI and FPM use identical configs
