@@ -2,7 +2,7 @@ pipeline {
     agent any
     triggers {
         // Update/build master at 9pm PT.
-        cron(env.BRANCH_NAME == 'master' ? '0 23 * * *' : '')
+        // cron(env.BRANCH_NAME == 'master' ? '0 23 * * *' : '')
     }
     environment { 
         TAG = "${env.BRANCH_NAME}"
